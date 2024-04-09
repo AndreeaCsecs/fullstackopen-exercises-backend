@@ -48,11 +48,3 @@ For detailed usage instructions and API documentation, refer to the code comment
 ## Contributing
 
 Contributions are welcome! Feel free to submit issues, suggest improvements, or create pull requests.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Contact
-
-For questions or inquiries, you can reach out to [your email or contact information].
