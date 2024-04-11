@@ -6,7 +6,7 @@ This repository contains the backend code for the Phonebook application.
 
 The backend application has been deployed to Render.com.
 
-You can access the deployed backend application [here]([https://andreea-phonebook.fly.dev/](https://fullstackopen-exercises-backend-yh8t.onrender.com/)).
+You can access the deployed backend application [here]([https://andreea-phonebook.fly.dev/](https://fullstackopen-exercises-backend-yh8t.onrender.com/).
 
 ## About
 
@@ -16,7 +16,7 @@ This backend application provides API endpoints for managing phonebook entries. 
 
 - **Exercise 3.9 Phonebook Backend Step 9**: Implemented backend functionality to work with the phonebook frontend from previous exercises. Made necessary changes to frontend URLs to communicate with the backend.
   
-- **Exercise 3.10 Phonebook Backend Step 10**: Deployed the backend to the internet using Fly.io. Tested the deployed backend with browser and REST clients like Postman to ensure functionality.
+- **Exercise 3.10 Phonebook Backend Step 10**: Deployed the backend to the internet using Render.com. Tested the deployed backend with browser and REST clients like Postman to ensure functionality.
   
 - **Exercise 3.11 Full Stack Phonebook**: Generated a production build of the frontend and added it to the internet application using the method introduced in the course. Ensured that the frontend still works locally in development mode.
 
