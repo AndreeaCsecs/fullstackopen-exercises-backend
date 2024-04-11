@@ -6,7 +6,7 @@ This repository contains the backend code for the Phonebook application.
 
 The backend application has been deployed to Render.com.
 
-You can access the deployed backend application [here]([https://fullstackopen-exercises-backend-yh8t.onrender.com/]).
+You can access the deployed backend application [here](https://fullstackopen-exercises-backend-yh8t.onrender.com/).
 
 ## About
 
