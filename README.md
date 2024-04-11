@@ -1,6 +1,6 @@
 # Phonebook Backend Application
 
-This repository contains the backend code for the Phonebook application.
+This repository contains the backend code for the Phonebook application, which is part of the University of Helsinki's Full Stack Open course (Part 3). You can find more information and start the course [here](https://fullstackopen.com/).
 
 ## Deployed Application
 
