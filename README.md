@@ -4,9 +4,9 @@ This repository contains the backend code for the Phonebook application.
 
 ## Deployed Application
 
-The backend application has been deployed to Fly.io.
+The backend application has been deployed to Render.com.
 
-You can access the deployed backend application [here](https://andreea-phonebook.fly.dev/).
+You can access the deployed backend application [here]([https://andreea-phonebook.fly.dev/](https://fullstackopen-exercises-backend-yh8t.onrender.com/)).
 
 ## About
 
