@@ -1,7 +1,10 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
+const Entry = require("./models/Entry");
 
 app.use(cors());
 
@@ -42,7 +45,9 @@ app.use(
 );
 
 app.get("/api/persons", (request, response) => {
-  response.json(phonebook);
+  Entry.find({}).then((entries) => {
+    response.json(entries);
+  });
 });
 
 app.get("/info", (request, response) => {
@@ -53,14 +58,18 @@ app.get("/info", (request, response) => {
 });
 
 app.get("/api/persons/:id", (request, response) => {
-  const id = Number(request.params.id);
-  const entry = phonebook.find((entry) => entry.id === id);
-
-  if (entry) {
-    response.json(entry);
-  } else {
-    response.status(404).end();
-  }
+  Entry.findById(request.params.id)
+    .then((entry) => {
+      if (entry) {
+        response.json(entry);
+      } else {
+        response.status(404).end();
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      response.status(400).send({ error: "Malformatted ID" });
+    });
 });
 
 app.delete("/api/persons/:id", (request, response) => {
@@ -77,22 +86,25 @@ app.post("/api/persons", (request, response) => {
     return response.status(400).json({ error: "name or number is missing" });
   }
 
-  if (phonebook.find((entry) => entry.name === body.name)) {
-    return response.status(400).json({ error: "name must be unique" });
-  }
-
-  const newEntry = {
-    id: Math.floor(Math.random() * 10000),
+  const entry = new Entry({
     name: body.name,
     number: body.number,
-  };
+  });
 
-  phonebook = phonebook.concat(newEntry);
-
-  response.json(newEntry);
+  entry
+    .save()
+    .then((savedEntry) => {
+      response.json(savedEntry);
+    })
+    .catch((error) => {
+      console.error(error);
+      response
+        .status(500)
+        .json({ error: "Failed to save entry to the database" });
+    });
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server running on port: ${PORT}`);
 });
