@@ -20,6 +20,10 @@ This backend application provides API endpoints for managing phonebook entries. 
   
 - **Exercise 3.11 Full Stack Phonebook**: Generated a production build of the frontend and added it to the internet application using the method introduced in the course. Ensured that the frontend still works locally in development mode.
 
+- **Exercise 3.13 Phonebook Database, Step 1**: Updated the fetching of all phonebook entries to fetch data from the database instead of using hardcoded data.
+  
+- **Exercise 3.14 Phonebook Database, Step 2**: Modified the backend to save new phonebook entries to the database. Verified that the frontend still works after the changes.
+
 ## Technologies Used
 
 - Node.js
