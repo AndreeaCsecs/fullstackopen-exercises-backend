@@ -14,15 +14,18 @@ This backend application provides API endpoints for managing phonebook entries. 
 
 ### Exercise Completion
 
-- **Exercise 3.9 Phonebook Backend Step 9**: Implemented backend functionality to work with the phonebook frontend from previous exercises. Made necessary changes to frontend URLs to communicate with the backend.
-  
-- **Exercise 3.10 Phonebook Backend Step 10**: Deployed the backend to the internet using Render.com. Tested the deployed backend with browser and REST clients like Postman to ensure functionality.
-  
-- **Exercise 3.11 Full Stack Phonebook**: Generated a production build of the frontend and added it to the internet application using the method introduced in the course. Ensured that the frontend still works locally in development mode.
+#### Exercises 3.15 - 3.18
 
-- **Exercise 3.13 Phonebook Database, Step 1**: Updated the fetching of all phonebook entries to fetch data from the database instead of using hardcoded data.
-  
-- **Exercise 3.14 Phonebook Database, Step 2**: Modified the backend to save new phonebook entries to the database. Verified that the frontend still works after the changes.
+- **3.15:** Implemented functionality to delete phonebook entries, reflecting changes in the database.
+- **3.16:** Moved error handling to a new error handler middleware.
+- **3.17:** Modified the backend to support updating phone numbers of existing entries.
+- **3.18:** Updated handling of API routes to interact with the database.
+
+#### Exercises 3.19 - 3.21
+
+- **3.19:** Expanded name validation to require at least three characters in the database. Implemented frontend error handling.
+- **3.20:** Added validation for phone numbers. Invalid numbers return appropriate error messages.
+- **3.21:** Deployed the backend to Render.com, ensuring functionality on the cloud service.
 
 ## Technologies Used
 
