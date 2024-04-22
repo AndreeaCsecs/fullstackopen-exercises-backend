@@ -1,3 +1,5 @@
+//index.js - backend
+
 require("dotenv").config();
 
 const express = require("express");
@@ -44,17 +46,34 @@ app.use(
   )
 );
 
+const errorHandler = (error, request, response, next) => {
+  console.error(error.message);
+
+  if (error.name === "CastError") {
+    return response.status(400).send({ error: "Malformatted ID" });
+  }
+
+  // Handle other types of errors here...
+
+  next(error);
+};
+
+app.use(errorHandler);
+
 app.get("/api/persons", (request, response) => {
   Entry.find({}).then((entries) => {
     response.json(entries);
   });
 });
 
-app.get("/info", (request, response) => {
-  const info = `Phonebook has info for ${phonebook.length} people</br>
+app.get("/info", (request, response, next) => {
+  Entry.countDocuments({})
+    .then((count) => {
+      const info = `Phonebook has info for ${count} people</br>
      ${new Date()}`;
-
-  response.send(info);
+      response.send(info);
+    })
+    .catch(next);
 });
 
 app.get("/api/persons/:id", (request, response) => {
@@ -66,20 +85,19 @@ app.get("/api/persons/:id", (request, response) => {
         response.status(404).end();
       }
     })
-    .catch((error) => {
-      console.error(error);
-      response.status(400).send({ error: "Malformatted ID" });
-    });
+    .catch((error) => next(error));
 });
 
 app.delete("/api/persons/:id", (request, response) => {
-  const id = Number(request.params.id);
-  phonebook = phonebook.filter((entry) => entry.id !== id);
-
-  response.status(204).end();
+  const id = request.params.id;
+  Entry.findByIdAndDelete(id)
+    .then(() => {
+      response.status(204).end();
+    })
+    .catch((error) => next(error));
 });
 
-app.post("/api/persons", (request, response) => {
+app.post("/api/persons", (request, response, next) => {
   const body = request.body;
 
   if (!body.name || !body.number) {
@@ -97,10 +115,33 @@ app.post("/api/persons", (request, response) => {
       response.json(savedEntry);
     })
     .catch((error) => {
-      console.error(error);
-      response
-        .status(500)
-        .json({ error: "Failed to save entry to the database" });
+      if (error.name === "ValidationError") {
+        return response.status(400).json({ error: error.message });
+      }
+      next(error);
+    });
+});
+
+app.put("/api/persons/:id", (request, response, next) => {
+  const body = request.body;
+
+  const entry = {
+    name: body.name,
+    number: body.number,
+  };
+
+  Entry.findByIdAndUpdate(request.params.id, entry, {
+    new: true,
+    runValidators: true,
+  })
+    .then((updatedEntry) => {
+      response.json(updatedEntry);
+    })
+    .catch((error) => {
+      if (error.name === "ValidationError") {
+        return response.status(400).json({ error: error.message });
+      }
+      next(error);
     });
 });
 
